@@ -1,0 +1,133 @@
+C:\Documents and Settings\Peter\My Doc
+uments\School\MTEC 2002 Python\MTEC200
+2_Class2>python
+Python 2.7.2 (default, Jun 12 2011, 15
+:08:59) [MSC v.1500 32 bit (Intel)] on
+ win32
+Type "help", "copyright", "credits" or
+ "license" for more information.
+>>> li=["a","b",",pilgrim","z","exampl
+e"]
+>>> li
+['a', 'b', ',pilgrim', 'z', 'example']
+
+>>> li[0]
+'a'
+>>> li[4]
+'example'
+>>> li[-1]
+'example'
+>>> li[-3]
+',pilgrim'
+>>> li[1:3]
+['b', ',pilgrim']
+>>> li[1:-1]
+['b', ',pilgrim', 'z']
+>>> li[0:3]
+['a', 'b', ',pilgrim']
+>>> li[0:0]
+[]
+>>> li[1:0]
+[]
+>>> li[-1:0]
+[]
+>>> li[-1:-5]
+[]
+>>> li[:3]
+['a', 'b', ',pilgrim']
+>>> li[3:]
+['z', 'example']
+>>> li[:]
+['a', 'b', ',pilgrim', 'z', 'example']
+
+>>> li.appens("new")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'list' object has no a
+ttribute 'appens'
+>>> li.append("new")
+>>> li
+['a', 'b', ',pilgrim', 'z', 'example',
+ 'new']
+>>> li.insert(2,"new")
+>>> li
+['a', 'b', 'new', ',pilgrim', 'z', 'ex
+ample', 'new']
+>>> li.extend(['two','elements'])
+>>> li
+['a', 'b', 'new', ',pilgrim', 'z', 'ex
+ample', 'new', 'two', 'elements']
+>>> li.append('1','2')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: append() takes exactly one
+argument (2 given)
+>>> li.append('1,2')
+>>> li
+['a', 'b', 'new', ',pilgrim', 'z', 'ex
+ample', 'new', 'two', 'elements', '1,2
+']
+>>> li=['a','b','c']
+>>> li.extend(['d','e','f'])
+>>> li
+['a', 'b', 'c', 'd', 'e', 'f']
+>>> len(li)
+6
+>>> li(-1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'list' object is not callab
+le
+>>> li[1]
+'b'
+>>> li[-1]
+'f'
+>>> li=['a','b','c']
+>>> li.append(['d','e','f'])
+>>> li
+['a', 'b', 'c', ['d', 'e', 'f']]
+>>> len(li)
+4
+>>> li[-1]
+['d', 'e', 'f']
+>>> li.index("c")
+2
+>>> li.index(['d','e','f'])
+3
+>>> li.index(z)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'z' is not defined
+>>> 'z'inli
+  File "<stdin>", line 1
+    'z'inli
+          ^
+SyntaxError: invalid syntax
+>>> 'z'in li
+False
+>>> li
+['a', 'b', 'c', ['d', 'e', 'f']]
+>>> li.remove('b')
+>>> li
+['a', 'c', ['d', 'e', 'f']]
+>>> li.remove('z')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in l
+ist
+>>> li.pop()
+['d', 'e', 'f']
+>>> li
+['a', 'c']
+>>> li=['a','b','mpilgrim']
+>>> li=li+['example','new']
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new
+']
+>>> li+=['two']
+>>> li
+['a', 'b', 'mpilgrim', 'example', 'new
+', 'two']
+>>> li=[1,2]*3
+>>> li
+[1, 2, 1, 2, 1, 2]
