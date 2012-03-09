@@ -17,10 +17,22 @@ Some test output follows!
 def search(sorted_list, value):
 	# implement your algorithm here
 	# defaulting to not found
-	return -1
+    last=len(sorted_list)
+    first=0
+    while first!=last:
+        middle=(first+last)/2
+        if value==sorted_list[middle]:
+            return middle
+        elif value>sorted_list[middle]:
+            first=middle
+        else: #value<sorted_list[middle]:
+            last=middle
+    return -1
 		
 # some tests (we'll learn about automated testing later...)
 my_sorted_list =[7, 32, 65]
+print len(my_sorted_list)
+print 3/2
 value = 7
 print "result: %s, value: %s, list: %s" % (search(my_sorted_list, value), value, my_sorted_list)
 value = 32
