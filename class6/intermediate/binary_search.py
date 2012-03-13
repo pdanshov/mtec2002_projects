@@ -17,9 +17,10 @@ Some test output follows!
 def search(sorted_list, value):
 	# implement your algorithm here
 	# defaulting to not found
+    x=0
     last=len(sorted_list)
     first=0
-    while first!=last:
+    while x!=len(sorted_list):
         middle=(first+last)/2
         if value==sorted_list[middle]:
             return middle
@@ -27,6 +28,7 @@ def search(sorted_list, value):
             first=middle
         else: #value<sorted_list[middle]:
             last=middle
+        x=x+1
     return -1
 		
 # some tests (we'll learn about automated testing later...)
