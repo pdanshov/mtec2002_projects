@@ -23,6 +23,12 @@ while len(animals)!=0:
 print animals
 print three_letter_words
 
+# while animals:
+#	a = animals.pop()
+#	if (a)==3:
+#		three_letter_words.append(a)
+#return three_letter_words
+
 """
 animals=['dog','zebra','giraffe','elephant','cat','lion','bear']
 three_letter_words=[]
