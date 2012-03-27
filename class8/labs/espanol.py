@@ -13,3 +13,5 @@ dog in spanish: perro
 cat in spanish: gato
 turtle in spanish: no se
 """
+def to_spanish(s):
+    

@@ -17,3 +17,30 @@ Expected Output:
 1t1u2t decoded is tutt
 (etc)
 """
+from operator import itemgetter
+import sys
+def encode(s):
+    d = {}
+    l = []
+    c = 0
+    for x in s:
+        if d.get(x, 0) == 0 and c != (map(itemgetter(0), l).index(x)):
+            d[x] = 1
+            l = d[x]
+            c += 1
+        else:
+            d[x] += 1
+    print "Encoding:"
+    for k,v in d.items():
+        sys.stdout.write(("%s%s" % (v,k)))
+    print ""
+    """
+    for k,v in d.items():
+        print "%s%s\b" % (v,k)
+    print ""
+    """
+"""
+def decode(s):
+    string = s
+        for x in s:
+            """

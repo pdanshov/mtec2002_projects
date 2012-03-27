@@ -20,6 +20,10 @@ title is Frankenstein.
 """
 book1 = {'author': 'Frank Herbert', 'pages': 500, 'title': 'Dune'}
 book2 = {'author': 'Mary Shelley', 'pages': 278, 'title': 'Frankenstein'}
-print book1,book2
-for k, v in book1.items():
-	print k, v
+for k,v in book1.items():
+	print "%s is %s" % (k, v)
+for k,v in book2.items():
+    print "%s is %s" % (k, v)
+list_of_books = [book1, book2]
+for x in list_of_books:
+    print x

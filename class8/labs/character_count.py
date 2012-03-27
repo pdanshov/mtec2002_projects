@@ -22,3 +22,12 @@ It's peanut butter jelly time
 Ecstatic elephants eat easily
 {'a': 4, ' ': 3, 'c': 2, 'E': 1, 'i': 2, 'h': 1, 'l': 2, 'n': 1, 'p': 1, 's': 3, 't': 4, 'y': 1, 'e': 4}
 """
+def character_count(s):
+    d={}
+    for x in s:
+        if d.get(x, 0) == 0:
+            d[x] = 1
+        else:
+            d[x]+=1
+    print d
+    return d
