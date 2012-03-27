@@ -27,7 +27,7 @@ data = c.fetchall()
 if len(data)==0:
     c.execute('CREATE TABLE IF NOT EXISTS scores(Player TEXT, Round INT, Score INT, Computer INT)')
     conn.commit()
-    c.execute('INSERT INTO scores (Player, Round, Score, Computer) VALUES ("Peter", 1, 999999, 0)')
+    c.execute('INSERT INTO scores (Player, Round, Score, Computer) VALUES ("Peter", 1, 99999, 0)')
     conn.commit()
     c.execute('INSERT INTO scores (Player, Round, Score, Computer) VALUES ("Jon", 62, 48, 14)')
     conn.commit()
@@ -43,7 +43,7 @@ if len(data)==0:
 print "Hi, what's your name?"
 player_name = raw_input("> ").capitalize()
 if len(player_name) > 6:
-    player_name = player_name[0:6]+"..."
+    player_name = player_name[0:3]+"..."
 
 c.execute("SELECT Player FROM scores WHERE Player=?",[player_name])
 data = c.fetchall()
@@ -88,7 +88,7 @@ while True:
             print "\n        ~~~~~~~Hi Scores~~~~~~~"
             print "   ____________________________________"
             print "   %-6s    %s    %s    %s" % (col_names[0], col_names[1], col_names[2], col_names[3])
-            for row in rows:    
+            for row in rows:
                 print "   %-6s    %-5s    %-5s    %-3s" % row
             print ""
     elif choice not in choices:
