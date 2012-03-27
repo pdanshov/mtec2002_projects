@@ -42,6 +42,8 @@ if len(data)==0:
 
 print "Hi, what's your name?"
 player_name = raw_input("> ").capitalize()
+if len(player_name) > 6:
+    player_name = player_name[0:6]+"..."
 
 c.execute("SELECT Player FROM scores WHERE Player=?",[player_name])
 data = c.fetchall()
@@ -76,18 +78,18 @@ while True:
     elif choice == 'help':
         print "\n%s" % help
     elif choice == 'scores':
-        print "\n~~~~~~~~Current~~~~~~~~"
-        print "Player Round Score Computer"
-        print "%-6s %-5s %-5s %-3s" % (player_name, round, player_score, computer_score)
+        print "\n        ~~~~~~~~Current~~~~~~~~"
+        print "   Player    Round    Score    Computer"
+        print "   %-6s    %-5s    %-5s    %-3s" % (player_name, round, player_score, computer_score)
         with conn:
             c.execute('SELECT * FROM scores ORDER BY Score DESC')
             col_names = [cn[0] for cn in c.description]
             rows = c.fetchall()
-            print "\n~~~~~~~Hi Scores~~~~~~~"
-            print "____________________________"
-            print "%s %s %s %s" % (col_names[0], col_names[1], col_names[2], col_names[3])
+            print "\n        ~~~~~~~Hi Scores~~~~~~~"
+            print "   ____________________________________"
+            print "   %-6s    %s    %s    %s" % (col_names[0], col_names[1], col_names[2], col_names[3])
             for row in rows:    
-                print "%-6s %-5s %-5s %-3s" % row
+                print "   %-6s    %-5s    %-5s    %-3s" % row
             print ""
     elif choice not in choices:
         print '\nInvalid input\n'
