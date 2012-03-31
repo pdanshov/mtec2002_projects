@@ -6,13 +6,13 @@ In addition to moving from top to bottom, add some random lateral motion by adju
 Rewrite the top to bottom animation code:
 1. Copy the boilerplate code from the template exercise - hello_pygame.py.
 2. Create three variables above the for loop.  Name them x, y and velocity_y.  Set them to the following values: 
-	x: window_dimensions[0] / 2
-	y: 0
-	velocity_y: 1
+    x: window_dimensions[0] / 2
+    y: 0
+    velocity_y: 1
 3. Draw a circle using the x and y values above
-	a. The code for the circle should go after the line that fills the background color in the while loop.  
-	b. Use the x and y values to set the coordinates of the circle.
-	c. Use the docs if you need help with calling the function: http://www.pygame.org/docs/ref/draw.html#pygame.draw.circle
+    a. The code for the circle should go after the line that fills the background color in the while loop.  
+    b. Use the x and y values to set the coordinates of the circle.
+    c. Use the docs if you need help with calling the function: http://www.pygame.org/docs/ref/draw.html#pygame.draw.circle
 4. Increment your y value by adding velocity_y.
 
 Add random lateral motion (that is, animate along the x-axis):
@@ -44,24 +44,25 @@ velocity_x = 0000000000000000000000000000000000000000000000000000000000000000000
 
 while running == True:
 
-	# stop the main loop when window is closed 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
-			
-	screen.fill(background_color)
+    # stop the main loop when window is closed 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            
+    screen.fill(background_color)
 
-	# draw everything here!  this line draws a circle in the middle of the screen
-	pygame.draw.circle(screen, (200, 200, 200), (x, y), 10)
-	pygame.draw.circle(screen, (205, 140, 149), (x, y), 6)
- 	y += velocity_y
-	velocity_x = random.randint(-1, 1)
-	x += velocity_x
+    # draw everything here!  this line draws a circle in the middle of the screen
+    pygame.draw.circle(screen, (200, 200, 200), (x, y), 10)
+    pygame.draw.circle(screen, (205, 140, 149), (x, y), 6)
+    y += velocity_y
+    velocity_x = random.randint(-1, 1)
+    x += velocity_x
 
-	if y >= WINDOW_HEIGHT:
-		y = 0
-	clock.tick(FRAME_RATE)
-	pygame.display.flip()
+    if y >= WINDOW_HEIGHT:
+        y = 0
+        
+    clock.tick(FRAME_RATE)
+    pygame.display.flip()
 
 # exit when we're done with the loop
 pygame.quit()

@@ -20,3 +20,10 @@ Expected Output:
 <li>of strings!</li>
 </ul>
 """
+import markdown
+mls = """
+* this is a list
+* of strings!
+"""
+html = markdown.markdown(mls)
+print html

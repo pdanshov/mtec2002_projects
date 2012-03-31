@@ -24,7 +24,7 @@ import pygame
 FRAME_RATE = 30
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
-WINDOW_TITLE = "My Game"
+WINDOW_TITLE = "pdanshov"
 
 background_color = (100, 100, 0)
 running = True
@@ -36,21 +36,23 @@ clock = pygame.time.Clock()
 
 while running == True:
 
-	# stop the main loop when window is closed 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
-			
-	screen.fill(background_color)
+    # stop the main loop when window is closed 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+            
+    screen.fill(background_color)
 
-	# draw everything here!  this line draws a circle in the middle of the screen
-	pygame.draw.circle(screen, (0, 0, 200), (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 10)
-	pygame.Rect(20, 20, 20, 20)
-	pygame.draw.circle(screen, (0, 0, 200), (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 10)
-	pygame.draw.circle(screen, (0, 0, 200), (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 10)
+    # draw everything here!  this line draws a circle in the middle of the screen
+    pygame.draw.ellipse(screen, (200,200,200), [315,100,100,255])
+    pygame.draw.circle(screen, (0, 0, 200), (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2), 10)
+    #rect = pygame.rect.Rect((25, 30), (50,60))
+    pygame.draw.rect(screen, (200,200,200), [405,300,50,60])
+    pygame.draw.arc(screen, (0,0,0), [500,300,100,200], 0, 0.8, 3)
+    #pygame.gfxdraw.ellipse(screen, 25, 25, 50, 50, (200,200,200))
  
-	clock.tick(FRAME_RATE)
-	pygame.display.flip()
+    clock.tick(FRAME_RATE)
+    pygame.display.flip()
 
 # exit when we're done with the loop
 pygame.quit()
