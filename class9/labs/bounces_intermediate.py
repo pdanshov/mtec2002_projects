@@ -50,8 +50,14 @@ while running == True:
     #pygame.gfxdraw.ellipse(screen, 25, 25, 50, 50, (200,200,200))
     if (y>WINDOW_HEIGHT-r or y<0+r):
         velocity_y = int(velocity_y / -1.3)
-
-    y += velocity_y
+    if velocity_y > 0:
+        y += velocity_y
+        velocity_y += 1
+    elif velocity_y < 0:
+        y += velocity_y
+        velocity_y += 1
+    elif velocity_y == 0:
+        velocity_y = 1
     #velocity_y -= 1
     
     clock.tick(FRAME_RATE)
