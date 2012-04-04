@@ -14,4 +14,5 @@ cat in spanish: gato
 turtle in spanish: no se
 """
 def to_spanish(s):
-    
+    d = {"dog":"perro", "cat":"gato", "turtle":"no se"}
+    print s+" is "+d.get(s, "no se")+" in spanish."

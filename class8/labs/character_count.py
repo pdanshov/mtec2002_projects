@@ -29,5 +29,4 @@ def character_count(s):
             d[x] = 1
         else:
             d[x]+=1
-    print d
     return d
