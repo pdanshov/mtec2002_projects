@@ -28,3 +28,13 @@ PROGRAM
 	b. you can use find_all on your soup object
 	c. iterate through the results...
 """
+import requests
+import bs4
+
+url = "http://www.zagat.com/search?text=thai&where%5Bname%5D=New+York+City+&where%5Bid%5D=4294610065&where%5Blat%5D=&where%5Blon%5D=&where%5Blocale%5D=New+York+City&where%5Bradius%5D="
+
+req = requests.get(url)
+soup = bs4.BeautifulSoup(req.text)
+rests = soup.find_all("a", "restaurant")
+for r in rests:
+	print r.string
