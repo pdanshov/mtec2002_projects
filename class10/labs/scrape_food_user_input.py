@@ -37,3 +37,54 @@ Butterfly Sushi Bar & Thai Cuisine
 .
 
 """
+import requests
+import bs4
+import re
+
+url = "http://www.yelp.com"
+#fullpath = url + path
+
+while True:
+    
+    area = raw_input("What city plz? ")
+    food = raw_input("Cuisine? ")
+    
+    search = "http://www.yelp.com/search?find_desc=&find_loc=%s&cflt=%s" % (area, food)
+    
+    req = requests.get(search)
+    soup = bs4.BeautifulSoup(req.text)
+    rests = soup.find_all('a', id = re.compile("bizTitleLink.*"))
+    print ''
+
+    for r in rests:
+        print r.string
+        #if r.has_key("href"):
+        #    print r["href"]
+        h = bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all('p', "hours")
+        a = bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("span", "street-address")
+        p = bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("span", "tel")
+        for x in h:
+            try:
+                print "   "+x.string
+            except TypeError:
+                print "NoneType object"
+        for x in a:
+            try:
+                print "   "+x.string
+            except TypeError:
+                print "NoneType object"
+        for x in p:
+            try:
+                print "   "+x.string
+            except TypeError:
+                print "NoneType object"
+        """
+        for h in bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all('p', "hours"):
+            print "   "+h.string
+        for a in bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("span", "street-address"):
+            print "   "+a.string
+        """
+        #print "".join(str(t) for t in ((bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("p", "hours")))
+        #print l.string
+        print ''
+        

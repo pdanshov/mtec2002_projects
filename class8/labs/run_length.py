@@ -49,4 +49,3 @@ def decode(s):
         else:
             break
     print ''.join(map(str, l))
-

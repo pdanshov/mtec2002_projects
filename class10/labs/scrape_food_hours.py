@@ -24,3 +24,36 @@ Mon 5 pm - 10 pm
 Tue-Sat 12 pm - 10 pm
 Sun 12 pm - 8 pm
 """
+import requests
+import bs4
+import re
+
+url = "http://www.yelp.com"
+
+#fullpath = url + path
+
+req = requests.get("http://www.yelp.com/search?find_desc=&find_loc=581+ovington+ave&cflt=food")
+soup = bs4.BeautifulSoup(req.text)
+rests = soup.find_all('a', id = re.compile("bizTitleLink.*"))
+print ''
+
+for r in rests:
+    print r.string
+    #if r.has_key("href"):
+    #    print r["href"]
+    h = bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all('p', "hours")
+    a = bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("span", "street-address")
+    for x in h:
+        print "   "+x.string
+    for x in a:
+        print "   "+x.string
+    """
+    for h in bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all('p', "hours"):
+        print "   "+h.string
+    for a in bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("span", "street-address"):
+        print "   "+a.string
+    """
+    #print "".join(str(t) for t in ((bs4.BeautifulSoup(requests.get((url+r["href"])).text).find_all("p", "hours")))
+    #print l.string
+    print ''
+    

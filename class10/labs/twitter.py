@@ -9,3 +9,11 @@ The url to perform the search: http://search.twitter.com/search.json?q=%40python
 3. use json.loads to create a dictionary
 4. print out the tweets
 """
+import requests
+import json
+
+req = requests.get("http://search.twitter.com/search.json?q=%40python")
+print req
+#tweets = json.loads({req})
+#print tweets
+print json.loads({req})
