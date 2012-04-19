@@ -1,0 +1,1 @@
+Django framework generates an html page for each listing in a database (for example) - instead of writing a page for each item (imagine 500 or 1x10E6 books)
