@@ -70,6 +70,11 @@ class Point:
 		d = math.sqrt(math.pow(0 - self.x, 2) + math.pow(0 - self.y, 2))
 		return d
 
+p = Point(-2,1)
+print p.distance_from(Point(1,5))
+print p.distance_from_origin()
+p.reset_to_origin()
+print p
 # define a class called point, use pass 
 # try using point by instantiating it
 # try to access an attribute on the fly, run your program

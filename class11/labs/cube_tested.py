@@ -6,6 +6,9 @@ Create a function that takes one argument, n.  Return n to the third power.  Wri
 http://docs.python.org/library/doctest.html
 """
 
+def cubed(n):
+    return n**3
+
 if __name__ == "__main__":
 	import doctest
 	doctest.testmod()

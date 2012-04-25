@@ -30,7 +30,7 @@ class Pet:
 	def __str__(self):
 		return "%s, cuteness: %s" % (self.name, self.cuteness_factor)
 
-	def procreate(self p):
+	def procreate(self, p):
 		return Pet("baby")
 
 	def speak(self):

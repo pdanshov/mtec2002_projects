@@ -29,7 +29,7 @@ Dune by Frank Herbert - True
 
 #This adds BookError to the Exception class
 class BookError(Exception):
-	pass
+    pass
 
 class Book:
 	def __init__(self, title):
@@ -43,7 +43,7 @@ class Book:
 
 	def check_out(self):
 		if self.available == False:
-			raise BooleanError, BookError("Book already taken")
+			raise BookError("Book already taken")
 		else:
 			self.available = False
 
@@ -52,3 +52,9 @@ class Book:
 
 	def add_author(self, name):
 		self.authors.append(name)
+        
+b=Book("dune")
+print b
+b.check_out()
+print b
+b.check_out()
