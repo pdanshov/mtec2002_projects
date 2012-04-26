@@ -30,28 +30,33 @@ Some example output from the interactive shell:
 >>> 
 """
 class Fraction():
-    def __init__(self, numerator, denominator):
-        self.num=numerator
-        self.den=denominator
-    def __str__(self):
-        return "%d/%d" % (self.num, self.den)
-    def pretty_print(self):
-        print self.num
-        print '-'
-        print self.den
-    def add(self, fs):
-        self.num=self.num+fs.num
-        self.den=self.den+fs.den
-        return "%d/%d" % (self.num, self.den)
-    def multiply(self, fp):
-        self.num=(self.num*fp.num)
-        self.den=(self.den*fp.den)
-        return "%d/%d" % (self.num, self.den)
+	def __init__(self, numerator, denominator):
+		self.num=numerator
+		self.den=denominator
+	def __str__(self):
+		return "%d/%d" % (self.num, self.den)
+	def pretty_print(self):
+		print self.num
+		print '-'
+		print self.den
+	def add(self, fs):
+		#find common denom
+		common_d = self.den * fs.den
+		#new numerator 1&2
+		n1 = self.den * fs.num
+		n2 = self.num * fs.den
+		self.num=n1 + n2
+		self.den=common_d
+		return "%d/%d" % (self.num, self.den)
+	def multiply(self, fp):
+		self.num=(self.num*fp.num)
+		self.den=(self.den*fp.den)
+		return "%d/%d" % (self.num, self.den)
 
 a=Fraction(1,2)
 print a
 a.pretty_print()
-a.add(Fraction(1,4))
+a.add(Fraction(2,3))
 print a
 a.multiply(Fraction(2,3))
 print a
