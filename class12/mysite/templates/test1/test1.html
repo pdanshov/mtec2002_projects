@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+	<title>Django</title>
+	
+	<style type="text/css">
+		#outer {height: 400px; overflow: hidden; position: relative;}
+		#outer[id] {display: table; position: static;}
+		
+		#middle {position: absolute; top: 50%;} /* for explorer only*/
+		#middle[id] {display: table-cell; vertical-align: middle; width: 99%;}
+		
+		#inner {position: relative; top: -50%} /* for explorer only */
+		/* optional: #inner[id] {position: static;} */
+		
+		/* just format */
+		div.greenBorder {border: 1px solid green; background-color: ivory;}
+	</style>
+</head>
+
+<body>
+<h1 align=center>Test One</h1>
+<div id="outer">
+	<div id="middle">
+		<div id="inner" align=center>
+			<ul>
+			<li>{{ list.0 }}</li>
+			<li>{{ list.1 }}</li>
+			<li>{{ list.2 }}</li>
+			</ul>
+			<a href="../test2/">Test II</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+<!--<!doctype html>
+<html>
+<center>
+<table width="60%" style="border: 2px solid #FF9900">
+<tr valign="middle">
+<td width="50%" align="center" height="120"><ul>
+<li>{{ list.0 }}</li>
+<li>{{ list.1 }}</li>
+<li>{{ list.2 }}</li>
+</ul></td>
+<td width="50%" align="center" height="120">TEXT</td>
+</tr>
+</table>
+</center>
+</body>
+</html>-->

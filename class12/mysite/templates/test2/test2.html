@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html>
+<head>
+	<title>Django</title>
+	
+	<style type="text/css">
+		#outer {height: 400px; overflow: hidden; position: relative;}
+		#outer[id] {display: table; position: static;}
+		
+		#middle {position: absolute; top: 50%;} /* for explorer only*/
+		#middle[id] {display: table-cell; vertical-align: middle; width: 99%;}
+		
+		#inner {position: relative; top: -50%} /* for explorer only */
+		/* optional: #inner[id] {position: static;} */
+		
+		/* just format */
+		div.greenBorder {border: 1px solid green; background-color: ivory;}
+	</style>
+</head>
+
+<body>
+<h1 align=center>Test II</h1>
+<div id="outer">
+	<div id="middle">
+		<div id="inner" align=center>
+			<ul>
+			{% for i in list %}
+			<li>{{ i }}</li>
+			{% endfor %}
+			</ul>
+			<a href="../test1/">Test One</a>
+		</div>
+	</div>
+</div>
+</body>
+<div align=center>Polling Application Test
+<p>
+{% for i in Poll_list.choice_set.all %}
+{{ i }}
+{% endfor %}
+{{ Polls_list.was_published_recently }}
+</div>
+</html>
