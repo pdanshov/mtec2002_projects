@@ -12,3 +12,10 @@ echo_client.py
 8.  Close the socket object by calling close on it.
 """
 import socket
+host = "localhost"
+port = 9999
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client.connect((host, port))
+client.send("String terminated by newline\n")
+print client.recv(150)
+client.close()
