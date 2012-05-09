@@ -11,6 +11,7 @@ def test1(request):
 def test2(request):
     t = loader.get_template("test2/test2.html")
     l = ["I", "Duo", "Terci"]
-    d = {"list":l, "Poll_list":models.Todo.objects.all()}
+    #d = {"list":l, "Poll_list":models.Todo.objects.all()}
+    d = {"list":l}
     c = Context(d)
     return HttpResponse(t.render(c))

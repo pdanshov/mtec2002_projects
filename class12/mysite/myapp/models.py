@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 from django.utils import timezone
-from myapp import todo
+#from myapp import todo
 
 # Create your models here.
 class Poll(models.Model):

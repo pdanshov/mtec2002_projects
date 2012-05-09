@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"> 
+
+
+	<title>MTEC2002 - Django Lab 1 - Hello World</title> 
+	<link rel="stylesheet" type="text/css" href="django-lab-1_files/screen.css">
+	<link rel="stylesheet" type="text/css" href="django-lab-1_files/syntax.css">
+</head><body>
+<div id="hd">
+<h1>MTEC2002 - Spring 2012</h1>
+<h2>Programming Foundations for Emerging Technology</h2>
+	<div id="nav-container">
+<ul id="nav">
+
+	<li><a href="http://jversoza.github.com/MTEC2002/index.html">Description</a></li>
+
+
+
+	<li><a href="http://jversoza.github.com/MTEC2002/syllabus.html">Syllabus</a></li>
+
+</ul>
+</div>
+
+</div>
+
+<div id="bd">
+	<h1 id="django_lab_1__hello_world">Django Lab 1 - Hello World</h1>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+<li>Install Django</li>
+
+<li>Create a hello world web application by using Django&#8217;s URL dispatcher, views and templates</li>
+</ul>
+
+<h3 id="installing_django">Installing Django</h3>
+
+<p><strong>In terminal:</strong></p>
+<ol>
+<li>
+Install django using pip
+
+
+<div class="highlight"><pre><code class="bash">pip install django
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Check your installation
+
+
+<div class="highlight"><pre><code class="bash">which django-admin.py
+</code></pre>
+</div>
+
+
+
+You should see the following as a result:
+<pre>/usr/local/bin/django-admin.py
+</pre>
+If nothing is returned, the installation did not work.  Look through the
+ output of your pip install command to track down the reason why.  You 
+can even run <code>pip install django</code> again try to reproduce what happened.
+</li>
+</ol>
+<h3 id="prepping_your_working_directory">Prepping your working directory</h3>
+
+<p><strong>In terminal:</strong></p>
+<ol>
+<li>
+Clone the mtec2002_assignments repo into a folder in <code>Desktop</code>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>Desktop
+git clone https://your_user_name@github.com/your_user_name/mtec2002_assignments.git
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Change your directory so that you're in <code>mtec2002_assignments</code>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>your_user_name
+</code></pre>
+</div>
+
+
+</li>
+
+<li>
+Check that you're in the right place - this should return something like <code>/Users/student/Desktop/your_user_rname/mtec2002_assignments</code>
+
+<div class="highlight"><pre><code class="bash"><span class="nb">pwd</span>
+</code></pre>
+</div>
+
+
+</li>
+
+<li>
+Make a directory for <code>class12</code> and cd into it
+
+<div class="highlight"><pre><code class="bash">mkdir class12
+<span class="nb">cd </span>class12
+<span class="nb">pwd</span>
+</code></pre>
+</div>
+
+
+This time, you should be in the class12 directory: <code>/Users/student/Desktop/your_user_rname/mtec2002_assignments/class12</code>.
+
+If you're not in this directory, check your path against <code>/Users/student/Desktop/your_user_rname/mtec2002_assignments/class12</code>.  Find where there is a discrepency and go through these steps again to see how to fix it.
+</li>
+</ol>
+<h3 id="starting_a_new_django_project_and_adding_an_app">Starting a new Django project and adding an app</h3>
+
+<p><strong>In terminal:</strong></p>
+<ol>
+<li>
+Start your project
+
+<div class="highlight"><pre><code class="bash">django-admin.py startproject helloworld
+</code></pre>
+</div>
+
+
+List the files that were created.
+
+<div class="highlight"><pre><code class="bash">ls
+</code></pre>
+</div>
+
+
+This should return:
+
+<div class="highlight"><pre><code class="bash">helloworld
+</code></pre>
+</div>
+
+
+</li>
+
+<li> 
+Add an app to your project by using manage.py.
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd </span>helloworld
+python manage.py startapp hello
+</code></pre>
+</div>
+
+
+List the files that were created.
+
+<div class="highlight"><pre><code class="bash">ls
+</code></pre>
+</div>
+
+
+This should return:
+<pre>hello		helloworld	manage.py
+</pre>
+List the files in the hello app.
+
+<div class="highlight"><pre><code class="bash">ls hello
+</code></pre>
+</div>
+
+
+This should return:
+<pre>__init__.py	models.py	tests.py	views.py
+</pre>
+</li>
+</ol>
+<h3 id="running_the_dev_server">Running the dev server</h3>
+
+<p><strong>In terminal:</strong></p>
+<ol>
+<li>
+Make sure you're in your <code>helloworld</code> project directory.  If you're not, <code>cd</code> into it.
+</li>
+<li>
+Run the dev server
+
+<div class="highlight"><pre><code class="bash">python manage.py runserver
+</code></pre>
+</div>
+
+
+This should return the following:
+<pre>Validating models...
+
+0 errors found
+Django version 1.4, using settings 'helloworld.settings'
+Development server is running at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+</pre>
+</li>
+<li>
+You can view your application at:  <code>http://localhost:8000/</code>
+</li>
+</ol>
+<h3 id="mapping_a_url_to_a_view">Mapping a URL to a view</h3>
+
+<p><strong>Create a url at /hello</strong></p>
+<ol>
+<li>
+With the dev server running, verify that the URL does not exist yet.  Open <code>http://localhost:8000/hello</code> in your browser.  You should see a page that has an error: <code>Page not found (404)</code>.
+</li>
+<li>Add the new URL to your application.  Open <code>helloworld/helloworld/urls.py</code> in your text editor (this should be in your class12 folder).</li>
+<li>Before the last set of closing parentheses, add this line (including the comma):
+
+<div class="highlight"><pre><code class="python"><span class="n">url</span><span class="p">(</span><span class="s">r'^hello/$'</span><span class="p">,</span> <span class="s">'hello.views.hello'</span><span class="p">),</span>
+</code></pre>
+</div>
+
+
+</li>
+</ol>
+<h3 id="checking_your_work_so_far">Checking your work so far</h3>
+<ol>
+<li>
+Check your work by going copying and pasting <code>http://localhost:8000/hello</code> into your browser
+</li>
+<li>
+You should get a page that says:
+<code>ViewDoesNotExist at /hello</code>
+</li>
+This means that a view function has to be written.  A view was mapped to in urls.py, but it wasn't mapped to yet.
+</ol>
+<h3 id="creating_a_view">Creating a view</h3>
+<ol>
+<li>Open <code>helloworld/hello/views.py</code> in your text editor (this should be in your class12 folder).</li>
+<li>Add the following to the file
+
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">"Hello world."</span><span class="p">)</span>
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Open <code>http://localhost:8000/hello/</code> in your browser.  You should see:
+<pre>Hello world.
+</pre>
+</li>
+<li>
+Try modifying what the index method returns so that it responds with an 
+actual html document.  Try wraping the text in strong tags.
+</li>
+</ol>
+<h3 id="using_a_template">Using a template</h3>
+<ol>
+<li>Open <code>helloworld/hello/views.py</code> in your text editor (this should be in your class12 folder).</li>
+<li>
+Add this to the top of the file:
+
+<div class="highlight"><pre><code class="python"><span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">Context</span><span class="p">,</span> <span class="n">loader</span>
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Replace the body of the index function (that is, the entire <code>return</code> statement) with this code:
+
+<div class="highlight"><pre><code class="python">    <span class="n">t</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">'hello/index.html'</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">Context</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Open <code>http://localhost:8000/hello/</code> in your browser.  You should see:
+<pre>TemplateDoesNotExist at /hello/
+</pre>
+</li>
+<li>Use <code>pwd</code> to make sure that you're in <code>/Users/student/Desktop/yourusername/mtec2002_assignments/class12/helloworld</code>.  If you're not:
+
+<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> /Users/student/Desktop/yourusername/mtec2002_assignments/class12/helloworld
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Make a <code>templates</code> directory in your <code>helloworld</code> project's directory
+
+<div class="highlight"><pre><code class="bash">mkdir -p templates/hello
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Create a file called <code>helloworld/templates/hello/index.html</code>in your text editor.
+</li>
+<li>
+
+<div class="highlight"><pre><code class="html"><span class="cp">&lt;!doctype html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+<span class="nt">&lt;b&gt;</span>hello world<span class="nt">&lt;/b&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+</code></pre>
+</div>
+
+
+</li>
+<li>
+Add the templates directory to your application's settings.  Open <code>helloworld/helloworld/settings.py</code>.  Find this block of code. 
+
+<div class="highlight"><pre><code class="python"><span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".</span>
+    <span class="c"># Always use forward slashes, even on Windows.</span>
+    <span class="c"># Don't forget to use absolute paths, not relative paths.</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+
+Add this line (your templates folder) before the closing parentheses:
+
+<div class="highlight"><pre><code class="python">	<span class="s">"/Users/student/Desktop/yourusername/mtec2002_assignments/class12/helloworld/templates/"</span><span class="p">,</span>
+</code></pre>
+</div>
+
+
+</li>
+<li>
+	Restart your development server by pressing control-C and <code>python manage.py runserver</code>
+</li>
+<li>
+	Try adding a variable to your view and displaying it in your template by using this in your view: <code>d = {'greeting': 'hello'}</code>
+</li>
+</ol>
+<h3 id="other_things_to_try">Other things to try</h3>
+<ol>
+<li>
+Add another url, view, and template: 
+
+<code>http://localhost:8000/howdy/</code>.
+
+It should it display howdy universe in italics.
+</li>
+</ol>
+</div>
+
+<div id="ft">
+	<div id="nav-container">
+<ul id="nav">
+
+	<li><a href="http://jversoza.github.com/MTEC2002/index.html">Description</a></li>
+
+
+
+	<li><a href="http://jversoza.github.com/MTEC2002/syllabus.html">Syllabus</a></li>
+
+</ul>
+</div>
+
+	<p>MTEC2002 - Programming Foundations for Emerging Technology - Spring 2012</p>
+	<p></p>
+</div>
+
+</body></html>
