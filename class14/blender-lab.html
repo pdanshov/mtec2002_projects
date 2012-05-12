@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"> 
+
+
+	<title>MTEC2002 - Blender Lab</title> 
+	<link rel="stylesheet" type="text/css" href="blender-lab_files/screen.css">
+	<link rel="stylesheet" type="text/css" href="blender-lab_files/syntax.css">
+</head><body>
+<div id="hd">
+<h1>MTEC2002 - Spring 2012</h1>
+<h2>Programming Foundations for Emerging Technology</h2>
+	<div id="nav-container">
+<ul id="nav">
+
+	<li><a href="http://jversoza.github.com/MTEC2002/index.html">Description</a></li>
+
+
+
+	<li><a href="http://jversoza.github.com/MTEC2002/syllabus.html">Syllabus</a></li>
+
+</ul>
+</div>
+
+</div>
+
+<div id="bd">
+	<h1 id="blender_lab">Blender Lab</h1>
+
+<h3 id="objectives">Objectives</h3>
+
+<ul>
+<li>Generate objects in blender.</li>
+
+<li>Simple animation and keyboard control in blender.</li>
+</ul>
+
+<h3 id="starting_blender_w_output_to_terminal">Starting Blender w/ Output to Terminal</h3>
+
+<ul>
+<li>To see debug info from the scripts that you run in Blender:</li>
+
+<li>Open Finder.</li>
+
+<li>In finder, navigate to the Applications folder (click on Macintosh HD -&gt; Applications).</li>
+
+<li>Right click or control click on the Blender icon.</li>
+
+<li>Choose &#8220;Show Package Contents&#8221; from the context menu.</li>
+</ul>
+
+<p><img src="blender-lab_files/package-contents.htm" alt="context menu"></p>
+
+<ul>
+<li>Go into Contents -&gt; MacOS.</li>
+
+<li>Double-click on blender to start.</li>
+</ul>
+
+<p><img src="blender-lab_files/blender.htm" alt="blender icon"></p>
+
+<ul>
+<li>Switch to scripting layout</li>
+</ul>
+
+<p><img src="blender-lab_files/scripting-layout.htm" alt="Scripting layout"></p>
+
+<ul>
+<li>You can create scripts in the text window</li>
+
+<li>You can run commands in the interactive Python shell</li>
+</ul>
+
+<h3 id="bpy">bpy</h3>
+
+<p>The built-in blender python module is called bpy. See the <a href="http://www.blender.org/documentation/blender_python_api_2_59_0/info_quickstart.html">quickstart guide</a> for an overview. Check out the <a href="http://www.blender.org/documentation/blender_python_api_2_63_2/">api documentation</a></p>
+
+<p>Note that <strong>this version of blender comes with Python 3</strong> installed!</p>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bpy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">bpy</span><span class="p">)</span>
+<span class="go">['__all__', '__builtins__', '__cached__', '__doc__', '__file__', '__name__', '__package__', '__path__', 'app', 'context', 'data', 'ops', 'path', 'props', 'types', 'utils']</span>
+</code></pre>
+</div>
+<h3 id="tips">Tips</h3>
+
+<ul>
+<li>find sample scripts here: /Applications/blender-2.63-release-OSX_10.5_i386/blender.app/Contents/MacOS/2.63/scripts/addons/</li>
+
+<li>use ctrl + SPACE to autocomplete in Python console</li>
+
+<li>hover over ui elements to see Python code</li>
+</ul>
+
+<p><img src="blender-lab_files/hover-code.htm" alt="Hover"></p>
+
+<h3 id="bpydata">bpy.data</h3>
+
+<p>bpy.data represents blender &#8220;datablocks&#8221;. They can be objects, scenes, materials, etc&#8230;</p>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span>
+<span class="go">&lt;bpy_struct, BlendData at 0x554b020&gt;</span>
+</code></pre>
+</div>
+<h3 id="bpydataobjects_and_object_attributes">bpy.data.objects and object attributes</h3>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span>
+<span class="go">&lt;bpy_collection[3], BlendDataObjects&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">bpy.data.objects['Camera']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">bpy.data.objects['Cube']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">bpy.data.objects['Lamp']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">]</span>
+<span class="go">bpy.data.objects['Cube']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">])</span>
+<span class="go">['__doc__', '__module__', '__slots__', 'active_material', 'active_material_index', 'active_shape_key', 'active_shape_key_index', 'animation_data', 'animation_data_clear', 'animation_data_create', 'animation_visualisation', 'bl_rna', 'bound_box', 'children', 'closest_point_on_mesh', 'collision', 'color', 'constraints', 'copy', 'cycles_visibility', 'data', 'delta_location', 'delta_rotation_euler', 'delta_rotation_quaternion', 'delta_scale', 'dimensions', 'draw_bounds_type', 'draw_type', 'dupli_faces_scale', 'dupli_frames_end', 'dupli_frames_off', 'dupli_frames_on', 'dupli_frames_start', 'dupli_group', 'dupli_list', 'dupli_list_clear', 'dupli_list_create', 'dupli_type', 'empty_draw_size', 'empty_draw_type', 'empty_image_offset', 'field', 'find_armature', 'game', 'grease_pencil', 'hide', 'hide_render', 'hide_select', 'is_duplicator', 'is_modified', 'is_updated', 'is_updated_data', 'is_visible', 'layers', 'library', 'location', 'lock_location', 'lock_rotation', 'lock_rotation_w', 'lock_rotations_4d', 'lock_scale', 'material_slots', 'matrix_basis', 'matrix_local', 'matrix_parent_inverse', 'matrix_world', 'mode', 'modifiers', 'motion_path', 'name', 'parent', 'parent_bone', 'parent_type', 'parent_vertices', 'particle_systems', 'pass_index', 'pose', 'pose_library', 'proxy', 'proxy_group', 'ray_cast', 'rna_type', 'rotation_axis_angle', 'rotation_euler', 'rotation_mode', 'rotation_quaternion', 'scale', 'select', 'shape_key_add', 'show_axis', 'show_bounds', 'show_name', 'show_only_shape_key', 'show_texture_space', 'show_transparent', 'show_wire', 'show_x_ray', 'slow_parent_offset', 'soft_body', 'tag', 'to_mesh', 'track_axis', 'type', 'up_axis', 'update_tag', 'use_dupli_faces_scale', 'use_dupli_frames_speed', 'use_dupli_vertices_rotation', 'use_fake_user', 'use_shape_key_edit_mode', 'use_slow_parent', 'user_clear', 'users', 'users_group', 'users_scene', 'vertex_groups']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+<span class="go">'Cube'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">]</span><span class="o">.</span><span class="n">type</span>
+<span class="go">'MESH'</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">]</span><span class="o">.</span><span class="n">location</span>
+<span class="go">Vector((0.0, 0.0, 0.0))</span>
+
+<span class="go">bpy.data.objects['Cube'].location.z = 5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="p">[</span><span class="s">'Cube'</span><span class="p">]</span><span class="o">.</span><span class="n">location</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+</code></pre>
+</div>
+<h3 id="bpydatascenes_and_scene_attributes">bpy.data.scenes and scene attributes</h3>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">scenes</span>
+<span class="go">&lt;bpy_collection[1], BlendDataScenes&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">scenes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">bpy.data.scenes['Scene']</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">scenes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">['__doc__', '__module__', '__slots__', 'active_clip', 'active_layer', 'animation_data', 'animation_data_clear', 'animation_data_create', 'audio_distance_model', 'audio_doppler_factor', 'audio_doppler_speed', 'audio_volume', 'background_set', 'bl_rna', 'camera', 'collada_export', 'copy', 'cursor_location', 'cycles', 'frame_current', 'frame_end', 'frame_preview_end', 'frame_preview_start', 'frame_set', 'frame_start', 'frame_step', 'frame_subframe', 'game_settings', 'gravity', 'grease_pencil', 'is_nla_tweakmode', 'is_updated', 'is_updated_data', 'keying_sets', 'keying_sets_all', 'layers', 'library', 'name', 'node_tree', 'object_bases', 'objects', 'orientations', 'render', 'rna_type', 'sequence_editor', 'statistics', 'sync_mode', 'tag', 'timeline_markers', 'tool_settings', 'unit_settings', 'update', 'update_tag', 'use_audio', 'use_audio_scrub', 'use_audio_sync', 'use_fake_user', 'use_frame_drop', 'use_gravity', 'use_nodes', 'use_preview_range', 'use_stamp_note', 'user_clear', 'users', 'world']</span>
+</code></pre>
+</div>
+<h3 id="bpycontext">bpy.context</h3>
+
+<p>Only access what the user has selected&#8230;</p>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">selected_objects</span>
+<span class="go">[bpy.data.objects['Cube']]</span>
+</code></pre>
+</div>
+<h3 id="bpyops">bpy.ops</h3>
+
+<p>bpy.ops represents the operations that you can perform through the blender user interface.</p>
+
+<p>Try apple + SPACE after typing in bpy.ops to see what can be operated on.</p>
+
+<p>Try apple + SPACE after typing in bpy.ops.mesh to show what you can do with a mesh</p>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">primitive_cube_add</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">{'FINISHED'}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">primitive_cube_add</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">{'FINISHED'}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">primitive_cube_add</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="go">{'FINISHED'}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">primitive_ico_sphere_add</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">{'FINISHED'}</span>
+</code></pre>
+</div>
+<h3 id="bpydatameshesnew_and_from_pydata">bpy.data.meshes.new and from_pydata</h3>
+<div class="highlight"><pre><code class="pycon"><span class="gp">&gt;&gt;&gt; </span><span class="c"># create a list of faces - should be a list of lists, with each inner list representing the index of the element</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">faces</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">triangle_mesh</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">meshes</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s">'triangle data'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">from_pydata</span><span class="p">(</span><span class="n">verts</span><span class="p">,</span> <span class="p">[],</span> <span class="n">faces</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">triangle_obj</span> <span class="o">=</span> <span class="n">bpy</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s">'triangle_obj'</span><span class="p">,</span> <span class="n">triangle_mesh</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bpy</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">scene</span> <span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">link</span><span class="p">(</span><span class="n">triangle_obj</span><span class="p">)</span>
+</code></pre>
+</div><div class="highlight"><pre><code class="pycon">
+</code></pre>
+</div>
+<h3 id="using_the_text_editor">Using the text editor</h3>
+
+<ul>
+<li>Create a new text file</li>
+</ul>
+
+<p><img src="blender-lab_files/create-text.htm" alt="Creating a text file"></p>
+
+<ul>
+<li>Turn on syntax highlighting, numbering and wrapping by activating 
+three buttons on the lower right hand corner of the script window</li>
+</ul>
+
+<p><img src="blender-lab_files/editor-options.htm" alt="Editor Options"></p>
+</div>
+
+<div id="ft">
+	<div id="nav-container">
+<ul id="nav">
+
+	<li><a href="http://jversoza.github.com/MTEC2002/index.html">Description</a></li>
+
+
+
+	<li><a href="http://jversoza.github.com/MTEC2002/syllabus.html">Syllabus</a></li>
+
+</ul>
+</div>
+
+	<p>MTEC2002 - Programming Foundations for Emerging Technology - Spring 2012</p>
+	<p></p>
+</div>
+
+</body></html>

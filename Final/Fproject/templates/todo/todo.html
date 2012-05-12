@@ -1,6 +1,25 @@
 <!doctype html>
 <html>
-<body>
-<b>hello world</b>
-</body>
+	<h2>todo</h2>
+	<body>
+		<b>
+			hello world
+		</b>
+		{% for x in items %}
+		<form method="post" action=""><!--{% csrf_token %}-->
+		{% if x.completed %}
+			<p><strike>{{ x.name }} - {{ x.created|date:"D d M Y H m"| }}</strike></p>
+			<p><strike>{{ x.description }}</strike></p>
+			<input type="checkbox" name="completed" checked="checked" /> Completed ?<br />
+		{% else %}
+			<p>{{ x.name }} - {{ x.created|date:"D d M Y" }}</p>
+			<p>{{ x.description }}</p>
+			<input type="checkbox" name="completed"> Completed ?<br />
+		{% endif %}
+			<input type="hidden" name="listid" value="{{item.id}}" />
+			<input type="submit" value="submit" />
+		</form>
+		<hr />
+		{% endfor %}
+	</body>
 </html>
