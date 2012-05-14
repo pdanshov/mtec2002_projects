@@ -1,25 +1,79 @@
 <!doctype html>
 <html>
-	<h2>todo</h2>
+	<head>
+		<title>Todo List</title>
+	</head>
+	<h2 align="CENTER">
+	<font color="#999999">
+	<u>
+		&nbsp;| Todo List |&nbsp;
+	</u>
+	</font>
+	<hr color="#EEEEEE" style="width:70%" /></h2>
 	<body>
-		<b>
-			hello world
-		</b>
+
 		{% for x in items %}
-		<form method="post" action=""><!--{% csrf_token %}-->
-		{% if x.completed %}
-			<p><strike>{{ x.name }} - {{ x.created|date:"D d M Y H m"| }}</strike></p>
-			<p><strike>{{ x.description }}</strike></p>
-			<input type="checkbox" name="completed" checked="checked" /> Completed ?<br />
-		{% else %}
-			<p>{{ x.name }} - {{ x.created|date:"D d M Y" }}</p>
-			<p>{{ x.description }}</p>
-			<input type="checkbox" name="completed"> Completed ?<br />
-		{% endif %}
-			<input type="hidden" name="listid" value="{{item.id}}" />
-			<input type="submit" value="submit" />
+
+		<form method="post" action="."><!--{% csrf_token %}-->
+
+			{% if x.completed %}
+
+				<p align="right">
+				<strike>
+					{{ x.created|date:"D M d Y h:iA"|lower }}: {{ x.name }}
+				</strike>
+				<br />
+				<strike>
+					{{ x.description }}
+				</strike>
+				<br />
+				<input type="checkbox" name="completed" checked="checked" /> Done
+				<input type="hidden" name="listid" value="{{x.id}}" />
+				<input type="checkbox" name="del" /> Delete
+				<input type="hidden" name="listid" value="{{x.id}}" />
+				<input type="submit" value="Submit" />
+				</p>
+
+			{% else %}
+
+				<p align="center">
+				<u>
+					&nbsp;| {{ x.created|date:"D M d Y h:iA" }}:</u>&nbsp;
+					{{ x.name }}
+				<br />
+					{{ x.description }}
+				<br />
+					<input type="checkbox" name="completed" />Done
+					<input type="hidden" name="listid" value="{{x.id}}" />
+					<input type="submit" value="Submit" />
+				</p>
+
+			{% endif %}
+
 		</form>
-		<hr />
+
+		<hr color="#EEEEEE" style="width:70%" />
 		{% endfor %}
+
+		<form name="item_form" method="post" action=".">
+		<!--fieldset style="width: 85%"-->
+		<fieldset>
+		<legend>{% if name_id %}Edit{% else %}New{% endif %} Item</legend>
+			<p align="center">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Title&nbsp;
+			<input type="text" name="name" style="text-align: center"  />
+			<label for="id_desc"><br />
+			Description
+			</label>
+			<!--span{% if form.description.errors %} class="error"{% endif %}
+			title="{{ form.description.errors|join:"," }}">
+			{{ form.description }}</span><br/-->
+			<!--Description:&nbsp;-->
+			<textarea type="textarea" name="description" style="text-align: center" rows="1" cols="16" ></textarea>
+			<br />
+			<input id="submit" type="submit" value="{% if name_id %}Update{% else %}Create{% endif %}" />
+			</p>
+		</fieldset>
+		</form>
 	</body>
 </html>

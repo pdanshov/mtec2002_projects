@@ -1,18 +1,25 @@
 # Create your views here.
-from django.http import HttpResponse
-from django.template import Context, loader
+#from django.http import HttpResponse
+#from django.template import Context, loader
 from django.shortcuts import render_to_response
 #from Fproject.todo.models import TodoList
-from models import TodoList
+from models import TodoItem
 
 def TodoPage(request):
-    items = TodoList.objects.all()
+    items = TodoItem.objects.all()
     if request.method == "POST":
+        #if action == "edit":
+            try:
+                litem = TodoItem.objects.get(id = request.POST['listid'])
+                litem.completed = not litem.completed
+                litem.save()
+            except TodoItem.DoesNotExist:
+                pass
+    if request.method == "CREATE":
         try:
-            litem = TodoList.objects.get(id = request.POST['listid'])
-            litem.completed = not litem.completed
+            litem = items(name=request.POST['name'], description=request.POST['description'])
             litem.save()
-        except TodoList.DoesNotExist:
+        except TodoItem.Exists:
             pass
     #t = loader.get_template('todo/todo.html')
     #d = {"greeting":"hello"}
