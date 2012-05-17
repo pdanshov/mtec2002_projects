@@ -20,15 +20,19 @@
 
 				<p align="right">
 				<strike>
-					{{ x.created|date:"D M d Y h:iA"|lower }}: {{ x.name }}
+					&nbsp;|&nbsp;
+				<font color="#999999">
+					{{ x.created|date:"D M d Y h:iA"|lower }}:&nbsp;
+				</font>
+				{{ x.name }}
 				</strike>
 				<br />
 				<strike>
 					{{ x.description }}
 				</strike>
 				<br />
-				<input type="checkbox" name="completed" checked="checked" /> Done
-				<input type="hidden" name="notchecked" value="on" />
+				<input type="checkbox" name="undone" checked="checked" /> Done
+				<input type="hidden" name="unchecked" />
 				<input type="hidden" name="listid" value="{{x.id}}" />
 				<input type="checkbox" name="delete" /> Delete
 				<!--input type="hidden" name="listid" value="{{x.id}}" /-->
@@ -39,19 +43,23 @@
 
 				<p align="center">
 				<u>
-					&nbsp;| {{ x.created|date:"D M d Y h:iA" }}:</u>&nbsp;
+					&nbsp;|&nbsp;
+				<font color="#999999">
+				{{ x.created|date:"D M d Y h:iA" }}:
+				</font>
+				</u>&nbsp;
 					{{ x.name }}
-				<br />
+				<br /><br />
 					{{ x.description }}
-				<br />
+				<br /><br />
 					<input type="checkbox" name="completed" />Done
 					<input type="hidden" name="listid" value="{{x.id}}" />
-					<input type="hidden" name="checked" />
+					<!--input type="hidden" name="checked" /-->
 					<input type="submit" value="Submit" />
 				</p>
 
 			{% endif %}
-
+			
 		</form>
 
 		<hr color="#EEEEEE" style="width:70%" />

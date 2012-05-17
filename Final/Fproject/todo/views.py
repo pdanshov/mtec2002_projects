@@ -12,43 +12,45 @@ def todopage(request):
 	if request.method == "POST":
 		try:
 			try:
-				if request.POST['completed'] == "on" and request.POST['checked'] == "":
+				if request.POST['completed'] == "on":
 					litem = todoitem.objects.get(id = request.POST['listid'])
 					litem.completed = not litem.completed
 					litem.save()
-					print "first"
 			except:
-				print "first exception"
+				print ""
 			try:
-				if request.POST['completed'] == "" and request.POST['notchecked'] == "":
+				if request.POST['undone'] == "on":
 					pass
 			except:
-				litem = todoitem.objects.get(id = request.POST['listid'])
-				litem.completed = not litem.completed
-				litem.save()
-				print "second"
+				if request.POST['unchecked'] == "":
+					litem = todoitem.objects.get(id = request.POST['listid'])
+					litem.completed = not litem.completed
+					litem.save()
 			try:
 				if request.POST['delete'] == "on":
 					#cursor = connection.cursor()
 					litem = todoitem.objects.get(id = request.POST['listid'])
 					litem.delete()
-					#litem.save()
-					print "delete"
 			except:
-				pass
-			#print "request.post completed %s" % (request.POST['completed'])
-			#print "request.post delete %s" % (request.POST['delete'])
+				print ""
+			print request.POST
+			print request.POST['completed']
+			#print "request.post completed %s" % (request.POST.getlist['completed'])
+			#print "request.post delete %s" % (request.POST.getlist['delete'])
 		except KeyError:
+			print request.POST
+			print "KeyError except"
 			pass
 	if request.method == "GET":
 		print "PUT turns to GET"
+		print request.GET
+		print request.GET
+		print request.GET['name']
+		print request.GET['description']
 		try:
-			print request.GET
-			print request.GET
-			print request.GET['name']
-			print request.GET['description']
-			litem = todoitem(name=request.GET['name'], description=request.GET['description'])
-			litem.save()
+			if request.GET['description'] != "":
+				litem = todoitem(name=request.GET['name'], description=request.GET['description'])
+				litem.save()
 		except:
 			print "Except Clause"
 	#t = loader.get_template('todo/todo.html')
