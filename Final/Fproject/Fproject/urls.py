@@ -17,5 +17,9 @@ urlpatterns = patterns('',
     
     #url(r'^admin/', include('django.contrib.admin.urls')),
     
-    url(r'^todo/', 'todo.views.TodoPage'),
+    url(r'^todo/', 'todo.views.todopage'),
+    
+    #/create/foo/bar
+    #/delete
+    #/complete
 )

@@ -14,7 +14,7 @@
 
 		{% for x in items %}
 
-		<form method="post" action="."><!--{% csrf_token %}-->
+		<form method="POST" action="."><!--{% csrf_token %}-->
 
 			{% if x.completed %}
 
@@ -28,9 +28,10 @@
 				</strike>
 				<br />
 				<input type="checkbox" name="completed" checked="checked" /> Done
+				<input type="hidden" name="notchecked" value="on" />
 				<input type="hidden" name="listid" value="{{x.id}}" />
-				<input type="checkbox" name="del" /> Delete
-				<input type="hidden" name="listid" value="{{x.id}}" />
+				<input type="checkbox" name="delete" /> Delete
+				<!--input type="hidden" name="listid" value="{{x.id}}" /-->
 				<input type="submit" value="Submit" />
 				</p>
 
@@ -45,6 +46,7 @@
 				<br />
 					<input type="checkbox" name="completed" />Done
 					<input type="hidden" name="listid" value="{{x.id}}" />
+					<input type="hidden" name="checked" />
 					<input type="submit" value="Submit" />
 				</p>
 
@@ -55,7 +57,7 @@
 		<hr color="#EEEEEE" style="width:70%" />
 		{% endfor %}
 
-		<form name="item_form" method="post" action=".">
+		<form name="item_form" method="GET" action=".">
 		<!--fieldset style="width: 85%"-->
 		<fieldset>
 		<legend>{% if name_id %}Edit{% else %}New{% endif %} Item</legend>
